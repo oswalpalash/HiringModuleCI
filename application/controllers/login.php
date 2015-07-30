@@ -19,19 +19,19 @@ class login extends CI_Controller
      public function index()
      {
           //get the posted values
-          $username = $this->input->post("txt_username");
-          $password = $this->input->post("txt_password");
-
-          // log_message('debug',var_dump($this->session->userdata('username')));
           if(!empty($this->session->userdata('username')))
           {
-              redirect('all');
+              redirect('home');
           }
           if ($this->input->post('btn_login') == "Login")
           {
-               $usr_result = $this->login_model->get_user($username, $password);
-              //  echo $usr_result;
-               if ($usr_result > 0) //active user record is present
+              // echo "hi";
+              // die();
+              $this->load->model('login_model');
+              $username = $this->input->post("txt_username");
+              $password = $this->input->post("txt_password");
+              $usr_result = $this->login_model->get_user($username, $password);
+              if ($usr_result > 0) //active user record is present
                {
                     //set the session variables
                     $sessiondata = array(
@@ -46,8 +46,7 @@ class login extends CI_Controller
                else
                {
                     $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Invalid username and password!</div>');
-                    // echo "$usr_result";
-                    // redirect('');
+                    redirect('');
                }
           }
           else {
