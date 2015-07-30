@@ -32,7 +32,7 @@
         //  echo "<td>";print_r($row->{'cand_id'});echo "</td>";
           echo "<td><a href='/index.php/candidate/";print_r($row->id);echo"'>";print_r($row->email);echo "</a></td>";
           echo "<td><a href='/index.php/candidate/";print_r($row->id);echo"'>";print_r($row->name);echo "</a></td>";
-          echo "<td>";print_r($row->team);echo "</td>";
+          echo "<td><a href='/index.php/all/".$row->team."'>";print_r($row->team);echo "</td>";
           if($row->decision == '1')
           {
             echo "<td>HIRED</td>";
