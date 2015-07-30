@@ -86,7 +86,7 @@
 	    </div>
 	    <div class="navbar-collapse collapse">
 	      <ul class="nav navbar-nav">
-	        <!-- <li><a href="#">L2</a></li> -->
+	        <li><a href="/index.php/add_interviewer">Admin</a></li>
 	      </ul>
 	    </div>
 	  </div>

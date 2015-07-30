@@ -39,7 +39,7 @@ class login extends CI_Controller
                          'loginuser' => TRUE
                     );
                     $this->session->set_userdata($sessiondata);
-                    redirect('/home');
+                    redirect('home');
                     $candidata = $this->candidate_model->get_all();
                     $this->load->view('list_candidates',$candidata);
                }

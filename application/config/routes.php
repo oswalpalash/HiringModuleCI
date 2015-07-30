@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // $route['default_controller'] = 'User_Authentication';
 $route['default_controller'] = 'login';
 $route['add_candidate']='add_candidate';
+$route['add_interviewer']='add_user';
 $route['team']='team';
 $route['home']='dashboard';
 $route['question']='question';
@@ -64,5 +65,6 @@ $route['candidate/(:num)'] = 'candidate/view/$1';
 // $route['add_candidate/add']='add';
 $route['all']='all_candidates';
 $route['all/(:any)']='all_candidates/team/$1';
+// $route['(:any)']='login'; //this is to make default paths to lead to main controller
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -17,7 +17,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/';
+// var_dump(getHostByName(getHostName()));
+// die();
+$config['base_url'] = 'http://'.getHostByName(getHostName());
 // $config['base_url'] = '';
 
 /*
