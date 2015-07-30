@@ -1,0 +1,49 @@
+Database Modeling For Recruit
+
+User Model :
+  //id autoincr
+  username
+  email
+  password
+  team (choice field) FK teamname
+
+Groups Model:
+  //id autoincr
+  teamname
+
+Interviewer Model:
+  //id autoincr
+  UserObj
+
+
+Candidate Model:
+  //id autoincr
+  Name
+  Resume ( filefield )
+
+Interview Model:
+  //id autoincr
+  CandidateObj
+  Interview_DT (date-time)
+  InterviewerObj
+  Decision boolean default false
+  Another_round? boolean false default
+
+Question Model:
+  //id autoincr
+  QuestionText
+  team
+
+Feedback Model:
+  id bigint(20) NOT NULL auto_increment Primary Key,
+  ques_id int references Question(id),
+  cand_id int references candidates(id),
+  user_id int references users(username),
+  CommentText varchar(200),
+  rating int NOT NULL default 1
+
+Report Model:
+  //id autoincr
+  CandidateObj
+  array of related InterviewModel as history
+  final_Decision
