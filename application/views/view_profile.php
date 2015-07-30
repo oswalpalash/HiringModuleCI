@@ -4,21 +4,25 @@
   <label for="resume">Resume: <a href=file:///<?php print_r($data[0]['resume']); ?>>File</a></label><br>
   <label for="team">Team:</label>  <?php print_r($data[0]['team']); ?> <br>
   <label for="team">Email:</label>  <?php print_r($data[0]['email']); ?> <br>
-  <label for="team">Previously Rejected:</label>  <?php if($data[0]['prev_reject'])
+  <label for="team">Status:</label>  <?php
+  if($data[0]['status']=='0')
   {
-    echo "Yes";
+    echo "No Decision";
+  }
+  elseif($data[0]['status']=='1'){
+    echo "Selected";
   }
   else{
-    echo "No";
+    echo "Rejected";
   }; ?> <br>
   <label for="team">Comments:</label>  <?php print_r($data[0]['comments']); ?> <hr>
    <div class='row'>
       <div class='col-md8'>
           <a href='schedule/<?php print_r($data[0]['id']);?>/<?php print_r($data[0]['team']); ?>'><span class='glyphicon glyphicon-pencil'>New Interview Round</span></a>
           <hr>
-          <a href='report/<?php print_r($data[0]['id']); ?>'><span class='glyphicon glyphicon-new-window'>View Report</span></a>
+          <a href='report/<?php print_r($data[0]['id']); ?>'><span class='glyphicon glyphicon-new-window'>View Interview Report</span></a>
           <hr>
-          <a href='feedback/<?php print_r($data[0]['id']); ?>'><span class='glyphicon glyphicon-star'>Enter Feedback</span></a>
+          <a href='feedback_new/<?php print_r($data[0]['id']); ?>'><span class='glyphicon glyphicon-star'>Enter Interview Feedback</span></a>
           <hr>
           <a href='reject/<?php print_r($data[0]['id']); ?>'><span class='glyphicon glyphicon-remove'>Send Rejection Email</span></a>
           <hr>

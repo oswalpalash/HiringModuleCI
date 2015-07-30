@@ -73,7 +73,7 @@
 	    <div class="navbar-header pull-right">
 	      <ul class="nav navbar-nav pull-left">
 					<li><a href="/index.php/team/add">Add Team</a></li>
-					<li><a href="/index.php/question/add">Add Feedback Question</a></li>
+					<!-- <li><a href="/index.php/question/add">Add Feedback Question</a></li> -->
 					<li><a href="/index.php/all/">All Candidates</a></li>
 	        <li><a href="/index.php/add_candidate">Add Candidate</a></li>
 					<li><a href="/index.php/logout">Logout</a></li>

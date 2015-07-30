@@ -60,6 +60,7 @@ $route['logout']='logout';
 $route['candidate/report/(:num)'] = 'candidate/report/$1';
 $route['candidate/reject/(:num)'] = 'candidate/reject/$1';
 $route['candidate/feedback/(:num)'] = 'candidate/feedback/$1';
+$route['candidate/feedback_new/(:num)'] = 'candidate/feedback_new/$1';
 $route['candidate/schedule/(:num)/(:any)'] = 'candidate/schedule/$1/$2';
 $route['candidate/(:num)'] = 'candidate/view/$1';
 // $route['add_candidate/add']='add';

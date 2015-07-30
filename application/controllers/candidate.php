@@ -103,6 +103,91 @@ class candidate extends CI_Controller {
 				redirect('login');
 			}
 	}
+	public function feedback_new($url_id)
+	{
+			if(!empty($this->session->userdata('username')))
+			{
+
+				$this->load->model('feedback_model');
+				$d['v'] = 'feedback_new';
+				$d['uid']= $url_id;
+				$d['i_ids']=$this->feedback_model->get_interview_ids($url_id);
+				$d['i_info']=$this->feedback_model->get_interviews($url_id);
+	      $d['data']= $this->feedback_model->generate_feedback($url_id);
+	      $this->load->view('template', $d);
+			}
+			else {
+				redirect('login');
+			}
+	}
+	public function save_feedback_new()
+	{
+			$this->load->model('new_feedback_model');
+			$this->load->model('feedback_model');
+			$this->load->model('candidate_model');
+			$this->load->model('new_question_model');
+			if(!empty($this->session->userdata('username')))
+			{
+				//check for post data
+
+					if ($this->input->post('submit') == "Submit")
+					{
+						//we have post data
+						$q_count=$this->input->post('q_count');
+						if(empty($this->input->post('decision'))){
+							$decision=0;
+						}
+						else {
+							$decision=1;
+						}
+						//TODO TRIGGER EMAIL IF DECISION FINALISED
+						if(empty($this->input->post('another_round'))){
+							$another_round=0;
+						}
+						else {
+							$another_round=1;
+						}
+						while($q_count-->0)
+						{
+								$qa_obj = array(
+									'cand_id'=>$this->input->post('uid'),
+									'intw_id'=>$this->input->post('interview'),
+									'QuestionText'=>$this->input->post('question'.$q_count),
+									'AnswerText'=>$this->input->post('answer'.$q_count)
+								);
+								$this->new_question_model->save_qa($qa_obj);
+							}
+							//SAVED ALL QA
+							$this->feedback_model->update_intw($this->input->post('interview'),$decision,$another_round);
+							//UPDATE INTERVIEW DECISIONS
+							$feedback_obj = array(
+								'intw_id'=>$this->input->post('interview'),
+								'cand_id'=>$this->input->post('uid'),
+								'user_id'=>$this->session->userdata('username'),
+								'CommentText'=>$this->input->post('comments'),
+								'rating'=>$this->input->post('rating')
+							);
+							$this->new_feedback_model->save_feedback($feedback_obj);
+
+							//update candidate model for status
+							if($decision==1){
+								$this->candidate_model->set_status($this->input->post('uid'),1);
+							}
+							else{
+									if($another_round==1){
+										$this->candidate_model->set_status($this->input->post('uid'),0);
+									}
+							}
+
+						}
+						redirect('candidate/'.$this->input->post('uid'));
+					}
+			else
+			 {
+					redirect('login');
+			}
+}
+
 	public function save_feedback()
 	{
 			$this->load->model('feedback_model');
@@ -173,7 +258,7 @@ class candidate extends CI_Controller {
 			$d['v'] = 'report';
 			$d['uid']= $url_id;
 			$d['cname'] = $this->report_model->find_name($url_id);
-			$d['data']=$this->report_model->generate_report($url_id);
+			$d['data']=$this->report_model->list_intw_ids($url_id);
 			$this->load->view('template', $d);
 		}
 		else {

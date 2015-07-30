@@ -93,7 +93,14 @@ class candidate_model extends CI_Model
      }
      public function reject($cand_id)
      {
-          $this->db->where('id', $cand_id)->update('candidates',array('prev_reject'=>1));
+          $this->db->where('id', $cand_id)->update('candidates',array('status'=>2));
+          // Find the most recent interview
+          return;
+     }
+     public function set_status($cand_id,$status)
+     {
+          $this->db->where('id', $cand_id)->update('candidates',array('status'=>$status));
+          // Find the most recent interview
           return;
      }
 }?>

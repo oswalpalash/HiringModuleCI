@@ -7,14 +7,10 @@ class report_model extends CI_Model
           // Call the Model constructor
           parent::__construct();
      }
-    public function generate_report($cand_id){
-       $query = $this->db->query('select * from
-       (select * from interview where cand_id = '.$cand_id.') T1,
-       (select * from feedback where cand_id = '. $cand_id.') T2,
-       (select * from question) T3
-       where T1.id = T2.intw_id and T2.ques_id=T3.id
-       order by timestamp desc;
-');
+    public function generate_fq($intw_id){
+       $query = $this->db->query('select * from feedback_new,question_new
+       where feedback_new.intw_id=question_new.intw_id and
+        feedback_new.intw_id = '.$intw_id.';');
        if ( $query->num_rows() > 0 )
        {
            $row = $query->result();
@@ -27,6 +23,30 @@ class report_model extends CI_Model
        {
            $row = $query->result_array();
            return $row[0]['name'];
+       }
+     }
+     public function list_intw_ids($cand_id){
+       $query = $this->db->select('*')->from('interview')->where('cand_id',$cand_id)->get();
+       if ( $query->num_rows() > 0 )
+       {
+           $row = $query->result_array();
+           return $row;
+       }
+     }
+     public function show_feedbk($intw_id){
+       $query = $this->db->select('*')->from('feedback_new')->where('intw_id',$intw_id)->get();
+       if ( $query->num_rows() > 0 )
+       {
+           $row = $query->result_array();
+           return $row;
+       }
+     }
+     public function show_qa($intw_id){
+       $query = $this->db->select('*')->from('question_new')->where('intw_id',$intw_id)->get();
+       if ( $query->num_rows() > 0 )
+       {
+           $row = $query->result_array();
+           return $row;
        }
      }
 }?>

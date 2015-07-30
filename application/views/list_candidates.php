@@ -33,18 +33,25 @@
           echo "<td><a href='/index.php/candidate/";print_r($row->id);echo"'>";print_r($row->email);echo "</a></td>";
           echo "<td><a href='/index.php/candidate/";print_r($row->id);echo"'>";print_r($row->name);echo "</a></td>";
           echo "<td><a href='/index.php/all/".$row->team."'>";print_r($row->team);echo "</td>";
-          if($row->decision == '1')
+          if($row->status=='2')
           {
-            echo "<td>HIRED</td>";
+            echo "<td>Rejected</td>";
           }
-          else{
-            if($row->another_round == '1')
+          else
+          {
+            if($row->decision == '1')
             {
-              echo "<td>NEXT INTERVIEW</td>";
+              echo "<td>HIRED</td>";
             }
-            else
-            {
-              echo "<td>UNSCREENED</td>";
+            else{
+              if($row->another_round == '1')
+              {
+                echo "<td>NEXT INTERVIEW</td>";
+              }
+              else
+              {
+                echo "<td>UNSCREENED</td>";
+              }
             }
           }
           echo "<td>";print_r($row->interviewer);echo "</td>";
