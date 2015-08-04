@@ -55,8 +55,8 @@ class candidate extends CI_Controller {
 				$config['protocol'] = "smtp";
 				$config['smtp_host'] = "ssl://smtp.gmail.com";
 				$config['smtp_port'] = "465";
-				$config['smtp_user'] = "zomatoemail@gmail.com";
-				$config['smtp_pass'] = "zomato123";
+				$config['smtp_user'] = ""; //your email here
+				$config['smtp_pass'] = ""; //your password here
 				$config['charset'] = "utf-8";
 				$config['mailtype'] = "html";
 				$config['newline'] = "\r\n";
