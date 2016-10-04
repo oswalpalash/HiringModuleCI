@@ -31,4 +31,4 @@ License
 *******
 
 Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+agreement <https://github.com/oswalpalash/HiringModuleCI/blob/master/license.txt>`_.
